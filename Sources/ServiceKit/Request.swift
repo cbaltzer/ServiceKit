@@ -49,7 +49,29 @@ extension Request {
         }
     }
     
+
+    /**
+     The content type of the incoming request.
+
+     - Note: Defaults to `application/octet-stream` if missing 
+    */
+    public var contentType: String {
+        get {
+            return head.headers["Content-Type"].first ?? "application/octet-stream"
+        }
+    }
     
+
+    /**
+     The HTTP headers of the incoming request. 
+    */
+    public var headers: HTTPHeaders {
+        get {
+            return head.headers
+        }
+    }
+
+
     /**
      The body of the incoming request.
     */
@@ -62,6 +84,7 @@ extension Request {
         }
     }
     
+
     /**
      The body of the incoming request, as a String for convencience.
     */
@@ -69,5 +92,17 @@ extension Request {
         get {
             return String(data: body, encoding: .utf8) ?? ""
         }
+    }
+
+
+    /**
+     Attempts to decode the body of the incoming request from 
+     JSON into the specified `Codable`. 
+
+     - parameter as: The type to decode into.
+    */
+    public func json<T:Codable>(as: T) throws -> T {
+        let decoder = JSONDecoder()
+        return try decoder.decode(T.self, from: body) 
     }
 }

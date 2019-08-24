@@ -12,9 +12,7 @@ public class Response {
     /**
      Headers to include with the response.
     */
-    public var headers: [(String,String)] = [
-        ("Access-Control-Allow-Origin", "*")
-    ]
+    public var headers: HTTPHeaders = HTTPHeaders()
     
     
     /**
@@ -133,7 +131,8 @@ extension Response {
         // Write the header
         let head = HTTPResponseHead(version: .init(major:1, minor:1),
                                     status: status,
-                                    headers: HTTPHeaders(headers))
+                                    headers: headers)
+
         let headPart = HTTPServerResponsePart.head(head)
         _ = session.channel.writeAndFlush(headPart).map {
             session.logger.trace("\(session.traceID) Response wrote header")
