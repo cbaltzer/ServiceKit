@@ -4,12 +4,15 @@ import NIOHTTP1
 import Logging
 
 
+
+
 /**
  An HTTP response for an incoming request.
 */
-// MARK: Response
 public class Response {
-    
+
+ // MARK: Response  
+
     /**
      Headers to include with the response.
     */
@@ -41,16 +44,6 @@ public class Response {
         if !locked {
             lockAndSend()
         }
-    }
-    
-    
-    // MARK: - Internal
-    // Internal back-reference to parent session
-    weak var session: RequestSession? = nil
-    private var locked: Bool = false
-    
-    init(session: RequestSession) {
-        self.session = session
     }
     
 }

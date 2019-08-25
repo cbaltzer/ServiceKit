@@ -1,12 +1,6 @@
 {
   "warnings": [
-    {
-      "file": "/home/cbaltzer/ServiceKit/Sources/ServiceKit/Service.swift",
-      "line": 7,
-      "symbol": "RequestHandler",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    }
+
   ],
   "source_directory": "/home/cbaltzer/ServiceKit"
 }
