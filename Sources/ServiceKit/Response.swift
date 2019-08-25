@@ -15,6 +15,8 @@ public class Response {
 
     /**
      Headers to include with the response.
+
+     - SeeAlso: [HTTPHeaders](https://apple.github.io/swift-nio/docs/current/NIOHTTP1/Structs/HTTPHeaders.html)
     */
     public var headers: HTTPHeaders = HTTPHeaders()
     
@@ -23,6 +25,7 @@ public class Response {
      The HTTP status to return with the response.
      
      - Note: Defaults to 200 OK
+     - SeeAlso: [HTTPResponseStatus](https://apple.github.io/swift-nio/docs/current/NIOHTTP1/Enums/HTTPResponseStatus.html)
     */
     public var status: HTTPResponseStatus = .ok
     
@@ -46,6 +49,15 @@ public class Response {
         }
     }
     
+
+    // MARK: - Internal
+    // Internal back-reference to parent session
+    weak var session: RequestSession? = nil
+    private var locked: Bool = false
+    
+    init(session: RequestSession) {
+        self.session = session
+    }
 }
 
 

@@ -17,8 +17,6 @@ public typealias RequestHandler = (Request, Response) -> Void
 */
 public class Service {
     
-
-    
     /**
      Initializes a new Service with the provided request handler.
      
@@ -62,7 +60,7 @@ public class Service {
         }
     }
     
-    
+
     /**
      A `Logger` instance used throughout the Service.
      

@@ -1,0 +1,13 @@
+author: Chris Baltzer
+author_url: https://github.com/cbaltzer
+github_url: https://github.com/cbaltzer/ServiceKit
+
+
+sourcekitten_sourcefile: .docs.json
+module: ServiceKit
+output: docs
+theme: apple
+clean: true
+
+
+

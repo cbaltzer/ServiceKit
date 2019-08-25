@@ -42,6 +42,8 @@ extension Request {
     
     /**
      The HTTP method of the incoming request (GET, POST, etc)
+
+     - SeeAlso: [HTTPMethod](https://apple.github.io/swift-nio/docs/current/NIOHTTP1/Enums/HTTPMethod.html)
     */
     public var method: HTTPMethod {
         get {
@@ -64,6 +66,8 @@ extension Request {
 
     /**
      The HTTP headers of the incoming request. 
+
+     - SeeAlso: [HTTPHeaders](https://apple.github.io/swift-nio/docs/current/NIOHTTP1/Structs/HTTPHeaders.html)
     */
     public var headers: HTTPHeaders {
         get {
