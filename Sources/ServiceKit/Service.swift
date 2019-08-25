@@ -4,7 +4,11 @@ import NIOHTTP1
 import Logging
 
 
+/**
+ A typealias for the `Service` request handler. 
+*/
 public typealias RequestHandler = (Request, Response) -> Void
+
 
 /**
  A Service is a basic HTTP server. Each incoming request will trigger the provided
@@ -13,13 +17,7 @@ public typealias RequestHandler = (Request, Response) -> Void
 */
 public class Service {
     
-    /**
-     A Logger instance used throughout the Service.
-     
-     - Note: A default Logger will be created if one is not provided in `init()`
-    */
-    public let logger: Logger
-    
+
     
     /**
      Initializes a new Service with the provided request handler.
@@ -65,6 +63,15 @@ public class Service {
     }
     
     
+    /**
+     A `Logger` instance used throughout the Service.
+     
+     - Note: A default Logger will be created if one is not provided in `init()`
+     - SeeAlso: [swift-log](https://github.com/apple/swift-log)
+    */
+    public let logger: Logger
+    
+
     // MARK: - Internal
     var bootstrap: ServerBootstrap?
     func bootstrap(_ handler: @escaping RequestHandler) {

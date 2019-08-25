@@ -7,6 +7,7 @@ import Logging
 /**
  An HTTP response for an incoming request.
 */
+// MARK: Response
 public class Response {
     
     /**

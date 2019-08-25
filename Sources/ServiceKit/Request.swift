@@ -26,7 +26,7 @@ public class Request {
 }
 
 
-// MARK: - Public
+// MARK: Request
 extension Request {
     
     /**
@@ -83,7 +83,12 @@ extension Request {
             return Data()
         }
     }
-    
+
+}
+
+
+// MARK: - Convenience
+extension Request {
 
     /**
      The body of the incoming request, as a String for convencience.
