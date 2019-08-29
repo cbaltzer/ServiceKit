@@ -51,7 +51,7 @@ public class Service {
                 return
             }
             
-            let channel = try bootstrap.bind(host: "localhost", port: port).wait()
+            let channel = try bootstrap.bind(host: "0.0.0.0", port: port).wait()
             logger.info("Server listening at http://localhost:\(port)")
             
             try channel.closeFuture.wait()
@@ -160,7 +160,7 @@ class RequestSession: ChannelInboundHandler {
             requestBodyPart = body
             break
         case .end(let headers):
-            logger.trace("\(traceID) Request reading headers, ending")
+            logger.trace("\(traceID) Request reading end part")
             requestEndPart = headers
             break
         }
@@ -181,12 +181,10 @@ class RequestSession: ChannelInboundHandler {
         let response = Response(session: self)
         
         guard let request = Request(session: self) else {
-            logger.critical("\(traceID) Invalid incoming request, writing 500")
+            logger.debug("\(traceID) Invalid incoming request, skipping")
             
-            response.status = .internalServerError
-            response.write("Server error")
-            response.send()
-            
+            _ = context.close()
+
             return
         }
 
