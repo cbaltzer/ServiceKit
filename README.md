@@ -1,6 +1,7 @@
 # ServiceKit
 
 ![Mac build status](https://github.com/cbaltzer/ServiceKit/workflows/Mac/badge.svg)
+![Linux build status](https://github.com/cbaltzer/ServiceKit/workflows/Linux/badge.svg)
 
 *** 
 
