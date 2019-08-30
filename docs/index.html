@@ -57,7 +57,8 @@
             
             <h1 id='servicekit' class='heading'>ServiceKit</h1>
 
-<p><img src="https://github.com/cbaltzer/ServiceKit/workflows/Mac/badge.svg" alt="Mac build status"></p>
+<p><img src="https://github.com/cbaltzer/ServiceKit/workflows/Mac/badge.svg" alt="Mac build status">
+<img src="https://github.com/cbaltzer/ServiceKit/workflows/Linux/badge.svg" alt="Linux build status"></p>
 
 <hr>
 
@@ -72,11 +73,74 @@
 
 <span class="n">service</span><span class="o">.</span><span class="nf">listen</span><span class="p">()</span>
 </code></pre>
+<h1 id='getting-started' class='heading'>Getting Started</h1>
+
+<p>Getting set up is pretty quick. Make a folder for your project and start a new <a href="https://swift.org/package-manager/">Swift Package</a>: </p>
+<pre class="highlight shell"><code>swift package init <span class="nt">--name</span> DemoService <span class="nt">--type</span> executable
+</code></pre>
+
+<p>Then, update your <code>Package.swift</code> file. If you&rsquo;re new to Swift this is the main manifest file
+for your project. Similar to <code>package.json</code> in Node, for example.</p>
+<pre class="highlight swift"><code><span class="c1">// swift-tools-version:5.0</span>
+<span class="kd">import</span> <span class="kt">PackageDescription</span>
+
+<span class="k">let</span> <span class="nv">package</span> <span class="o">=</span> <span class="kt">Package</span><span class="p">(</span>
+    <span class="nv">name</span><span class="p">:</span> <span class="s">"DemoService"</span><span class="p">,</span>
+    <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+        <span class="c1">// Dependencies declare other packages that this package depends on.</span>
+        <span class="c1">// This is the magic line. </span>
+        <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/cbaltzer/ServiceKit"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"0.1.0"</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="nv">targets</span><span class="p">:</span> <span class="p">[</span>
+        <span class="o">.</span><span class="nf">target</span><span class="p">(</span>
+            <span class="nv">name</span><span class="p">:</span> <span class="s">"DemoService"</span><span class="p">,</span>
+            <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span><span class="s">"ServiceKit"</span><span class="p">]),</span> <span class="c1">// Tell the linker to actually connect our dependency</span>
+        <span class="o">.</span><span class="nf">testTarget</span><span class="p">(</span>
+            <span class="nv">name</span><span class="p">:</span> <span class="s">"DemoServiceTests"</span><span class="p">,</span>
+            <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span><span class="s">"DemoService"</span><span class="p">]),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</code></pre>
+
+<p>The initializer for your package should have provided a <code>main.swift</code> file. Fill it out with 
+a Hello World sample to make sure everything works:</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">ServiceKit</span>
+
+<span class="k">let</span> <span class="nv">demo</span> <span class="o">=</span> <span class="kt">Service</span><span class="p">()</span> <span class="p">{</span> <span class="n">req</span><span class="p">,</span> <span class="n">res</span> <span class="k">in</span>
+  <span class="n">res</span><span class="o">.</span><span class="nf">write</span><span class="p">(</span><span class="s">"Hi, it works!"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="nf">listen</span><span class="p">()</span>
+</code></pre>
+
+<p>Now finally to launch your new service:</p>
+<pre class="highlight plaintext"><code>swift run 
+</code></pre>
+
+<p>Check it out at <a href="http://localhost:5000/">http://localhost:5000/</a></p>
+<h2 id='environment-setup' class='heading'>Environment Setup</h2>
+<h3 id='xcode-mac' class='heading'>Xcode (Mac)</h3>
+
+<p>This is the way to go if you&rsquo;re on a Mac. Installing Xcode from the Mac App Store will include
+the Swift toolchains. </p>
+
+<p>Editing is also easiest with Xcode:</p>
+<pre class="highlight plaintext"><code>swift package generate-xcodeproj
+</code></pre>
+<h3 id='vscode-mac-linux-windows' class='heading'>VSCode (Mac, Linux, Windows)</h3>
+
+<p>Getting a Swift dev environment set up on any platform is made pretty easy with the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">Remote - Containers</a> 
+extension. This will launch a <a href="https://www.docker.com/">Docker</a> container with the specified environment, including toolchains and other extensions.</p>
+
+<p>Check out the <a href="https://github.com/cbaltzer/ServiceKit/tree/master/.devcontainer">.devcontainer</a> folder for reference.</p>
+<h1 id='deploying' class='heading'>Deploying</h1>
+
+<p>Deploying is also easiest with Docker. Check out the <a href="https://github.com/cbaltzer/ServiceKit/tree/master/Dockerfile">Dockerfile</a> for a basic example.</p>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/cbaltzer" target="_blank" rel="external">Chris Baltzer</a>. All rights reserved. (Last updated: 2019-08-24)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/cbaltzer" target="_blank" rel="external">Chris Baltzer</a>. All rights reserved. (Last updated: 2019-08-30)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

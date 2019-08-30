@@ -1,0 +1,19 @@
+{
+    "name": "Swift",
+    "dockerFile": "Dockerfile",
+
+    // ServiceKit uses port 5000 by default, if you're using 
+    // something else update this to match
+    "appPort": [5000],
+
+
+    "extensions": [
+        "vknabel.vscode-swift-development-environment"
+    ],
+
+
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "swift.path.sourcekite": "/usr/local/bin/sourcekite"
+    }
+}
