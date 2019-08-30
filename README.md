@@ -22,7 +22,18 @@ service.listen()
 
 # Getting Started 
 
-Getting set up is pretty quick. Make a folder for your project and start a new [Swift Package](https://swift.org/package-manager/): 
+Getting up and running is pretty quick. You can use this repo as a reference. Check out the [Demo](https://github.com/cbaltzer/ServiceKit/tree/master/Sources/Demo) folder and [Package.swift](https://github.com/cbaltzer/ServiceKit/tree/master/Package.swift). 
+
+To see it in action, just clone this repo and do:
+
+```
+swift run 
+```
+
+
+## Basic Setup
+
+To get started on your own, make a folder for your project and start a new [Swift Package](https://swift.org/package-manager/): 
 
 ```bash 
 swift package init --name DemoService --type executable
@@ -75,6 +86,7 @@ swift run
 Check it out at [http://localhost:5000/](http://localhost:5000/)
 
 
+
 ## Environment Setup
 
 ### Xcode (Mac)
@@ -98,6 +110,7 @@ Check out the [.devcontainer](https://github.com/cbaltzer/ServiceKit/tree/master
 
 # Deploying
 
-Deploying is also easiest with Docker. Check out the [Dockerfile](https://github.com/cbaltzer/ServiceKit/tree/master/Dockerfile) for a basic example.
+Deploying is easiest with Docker. Check out the [Dockerfile](https://github.com/cbaltzer/ServiceKit/tree/master/Dockerfile) 
+for a basic example of how the demo service is bundled. 
 
 
