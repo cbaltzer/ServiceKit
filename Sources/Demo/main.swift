@@ -30,10 +30,13 @@ let service = Service() { req, res in
         
         task.resume()
         
-    } else {
+    } else if req.url.path == "/" {
         
         res.write("Demo Server\n")
         
+    } else {
+        res.status = .notFound
+        res.write("404")
     }
     
 }

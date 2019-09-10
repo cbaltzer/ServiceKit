@@ -168,8 +168,9 @@ class RequestSession: ChannelInboundHandler {
     
     
     // Abandon ship if there's an error
+    // This is almost always from a vulnerability scanner sending us trash
     public func errorCaught(context: ChannelHandlerContext, error: Error) {
-        logger.error("\(traceID) Socket error: \(error)")
+        logger.notice("\(traceID) Socket error: \(error)")
         context.close(promise: nil)
     }
     
@@ -177,16 +178,14 @@ class RequestSession: ChannelInboundHandler {
     // Once the Request is fully assembled we create a Response and path both
     // to the user's response handler
     func channelReadComplete(context: ChannelHandlerContext) {
-        
-        let response = Response(session: self)
-        
         guard let request = Request(session: self) else {
-            logger.debug("\(traceID) Invalid incoming request, skipping")
-            
-            _ = context.close()
+            logger.trace("\(traceID) Invalid incoming request, skipping")   
+            context.close(promise: nil)
 
             return
         }
+
+        let response = Response(session: self)
 
         handler(request, response)
     }

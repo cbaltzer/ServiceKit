@@ -13,15 +13,17 @@ public class Request {
     let head: HTTPRequestHead
     var bodyBuffer: ByteBuffer?
     var end: HTTPHeaders?
+    let unwrappedURL: URL
     
     init?(session: RequestSession) {
-        guard let head = session.requestHeadPart else {
+        guard let head = session.requestHeadPart, let url = URL(string: head.uri) else {
             return nil
         }
         
         self.head = head
         self.bodyBuffer = session.requestBodyPart
         self.end = session.requestEndPart
+        self.unwrappedURL = url
     }
 }
 
@@ -34,8 +36,7 @@ extension Request {
     */
     public var url: URL {
         get {
-            // Might need to do swiftlint:disable force_unwrapping here eventually
-            return URL(string: head.uri)!
+            return unwrappedURL
         }
     }
     
