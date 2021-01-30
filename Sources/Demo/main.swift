@@ -3,7 +3,7 @@
 import ServiceKit
 import Foundation
 
-#if swift(>=5.1)
+#if canImport(FoundationNetworking)
 import FoundationNetworking
 #endif
 

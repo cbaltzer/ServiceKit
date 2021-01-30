@@ -17,3 +17,5 @@ RUN swift build --configuration release
 
 EXPOSE 5000
 CMD [".build/release/Demo"]
+
+
